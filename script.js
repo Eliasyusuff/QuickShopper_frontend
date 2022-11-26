@@ -19,7 +19,7 @@ const password = form.querySelector(".password");
 function handleform() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    console.log("I got here", data)
+    //console.log("I got here", data)
     console.log(JSON.stringify(data));
     return data;
 }
@@ -30,7 +30,7 @@ form.querySelector("#nxt-btn").addEventListener("click", (evt) => {
     let data = handleform();
     console.log(data);
     const jsonString = JSON.stringify(data);
-    console.log(jsonString,"ha ha")
+   // console.log(jsonString,"ha ha")
 const xhr = new XMLHttpRequest();
   xhr.open("POST","http://localhost:8080/api/v1/auth/user/signup");
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
