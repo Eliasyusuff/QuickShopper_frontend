@@ -2,6 +2,9 @@
 let cartIcon = document.querySelector("#cart-icon");
 let cart = document.querySelector(".cart");
 let closeCart = document.querySelector("#close-cart"); 
+let payload = sessionStorage.getItem('token');
+
+let cartArray= [];
 // Open Cart
 cartIcon.onclick = () => {
     cart.classList.add("active");
@@ -50,8 +53,57 @@ function buyButtonCLicked(){
     var cartContent = document.getElementsByClassName('cart-content')[0];
     while (cartContent.hasChildNodes()) {
         cartContent.removeChild(cartContent.firstChild);
+
+
     }
     updatetotal();
+}
+
+function sendCartOrder(){
+    // const jsonString = JSON.stringify(data2);
+        
+    let urlx = "http://localhost:8080/api/v1/saveOrdertoCart"
+    function callb(e) {
+
+        let s = e
+        console.log(s, "got here")
+    
+        Swal.fire({
+            icon:"success",
+            title:"success",
+            text:s,
+            timer:2000
+        }).then(() => {
+            window.location = 'orderpage1.html'
+        })
+    }
+    function load(url, callback){
+        const xhr = new XMLHttpRequest();
+       
+
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState == 4 && xhr.status==200) {
+                console.log('got hererrrrr', xhr.status)
+                callback(xhr.response)
+            }
+            else{
+                // console.log(jsonString,"ererer")
+                console.log(xhr.status,"maddd")
+            }
+        }
+        
+        xhr.open("POST",url,true);
+        // console.log(jsonString)
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+       xhr.send(jsonString);
+    }
+
+    try {
+        load(urlx, callb)            
+    } catch (error) {
+        console.log("there was an error", error)
+    }
+
 }
 
 
@@ -71,6 +123,9 @@ function quantityChanged(event){
 }
 //Add to Cart
 function addCartClicked(event){
+
+
+    addProductToCart(event.target.id);
     var button = event.target;
     var shopProducts = button.parentElement;
     var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
@@ -78,6 +133,22 @@ function addCartClicked(event){
     var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
     addProductToCart(title, price, productImg);
     updatetotal();
+}
+
+function addToCartArray(Product){
+
+    cartArray.push(product);
+    
+}
+
+function removeFromArray(itemId){
+    cartArray = cartArray.filter(arrItem => arrItem.id!==id)
+}
+
+function productDetails(obj){
+    obj.cartId = Math.floor(Math.random() * 1000);
+
+
 }
 function addProductToCart(title, price, productImg) {
     var cartShopBox = document.createElement("div");

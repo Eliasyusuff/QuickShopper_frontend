@@ -21,13 +21,13 @@
             <div class="form login">
                 <span class="title">Login</span>
 
-                <form action="#" id="reg"> 
+                <form action="#" id="login-form"> 
                     <div class="input-field">
-                        <input id="" class="" name="email" type="email" value="" placeholder="Enter your email" required>
+                        <input id="" class="" name="loginEmail" type="email" value="" placeholder="Enter your email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input id="pass" class="pass" name="password" type="password" class="password" value="" placeholder="Enter your password" required>
+                        <input id="pass" class="pass" name="loginPassword" type="password" class="password" value="" placeholder="Enter your password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -62,29 +62,34 @@
             <div class="form signup">
                 <span class="title">Registration</span>
 
-                <form action="#" id="reg-form" class="form">
+                <form action="#" id="reg-form" class="form" onsubmit="handleform">
                     <div class="input-field">
                         <input class="lname" id="lname" name="firstname" type="text" value="" placeholder="Enter your First Name" required>
                         <i class="uil uil-user"></i>
                     </div>
+                    <div id="fnameerror" style="font-size:12px"></div>
                     <div class="input-field">
                         <input class="fname" id="fname" name="lastname" type="text" value="" placeholder="Enter your Last Name" required>
                         <i class="uil uil-user"></i>
                     </div>
+                    <div id="lnameerror" style="font-size:12px"></div>
                     <div class="input-field">
                         <input  class="email" id="email" name="email"  type="email" value="" placeholder="Enter your email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
+                    <div id="emailerror" style="font-size:12px"></div>
                     <div class="input-field">
                         <input class="number" id="number" name="phoneNo" type="number" value="" placeholder="Enter your phone number" required>
                         <i class="uil uil-phone icon"></i>
                     </div>
+                    <div id="phonenoerror" style="font-size:12px"></div>
                     <div class="input-field">
                         <input id="passw" class="passw" name="password" type="password" value="" placeholder="Create password" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
+                    <div id="passworderror" style="font-size:12px"></div>
                     <div class="input-field">
-                        <input id="pass" class="pass" name="password" type="password" class="password" value="" placeholder="Confirm your password" required>
+                        <input id="pass2" class="pass" name="password" type="password" class="password" value="" placeholder="Confirm your password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -99,7 +104,7 @@
                             <label for="termCon" class="text">Signup as Personal Shopper</label>
                         </div>
                     </div>
-
+                    <div id="errorDiv"></div>
                     <div class="input-field button">
                         <input id="nxt-btn" type="button" value="Signup">
                     </div>
@@ -116,7 +121,7 @@
     <script></script>
 
     </script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
 </body>
 </html>
